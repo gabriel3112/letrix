@@ -1,0 +1,30 @@
+h1{
+    font-family: cursive;
+    color: skyblue;
+    text-align: center;
+    font-size: 100px;
+}
+h2{
+    text-align: center;
+    font-family: cursive;
+    color: limegreen;
+    font-size: 60px;
+}
+p{
+    text-align: center;
+    color: blueviolet;
+    font-size: 40px;
+}
+body{
+    background-color: lightseagreen;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    
+}
+button{
+    font-size: 24px;
+    padding: 15px 40px;
+    background-color: brown;
+}

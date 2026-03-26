@@ -1,0 +1,25 @@
+img{
+    width:200px;
+    display:block;
+    margin:auto;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+}
+
+h1{
+    text-align:center;
+}
+
+body{
+    margin:0; /* importante */
+    height:100vh; /* garante altura */
+    
+    background-image: url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
