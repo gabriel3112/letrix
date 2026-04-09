@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monte a Palavra</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<style>
+
+body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    font-family:Arial;
+    text-align:center;
+}
+
+img{
+    width:180px;
+    margin:20px;
+}
+
+#palavra{
+    font-size:40px;
+    letter-spacing:10px;
+    margin:20px;
+}
+
+#letras{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    max-width:300px;
+}
+
+button{
+    font-size:22px;
+    padding:12px;
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+    background:#4CAF50;
+    color:white;
+}
+
+#proxima{
+    margin-top:20px;
+    background:#2196F3;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="somAcerto" src="acerto.mp3"></audio>
+<audio id="somErro" src="erro.mp3"></audio>
+
+<h1>Monte a Palavra</h1>
+
+<img id="imagem" src="{{ url_for('static', filename='Apple.png') }}">
+
+
+<div id="palavra"></div>
+<div id="letras"></div>
+<div id="mensagem"></div>
+
+<button id="proxima" onclick="proxima()">PRÓXIMA</button>
+
+<script>
+let palavraAtual = ""
+
+function iniciar() {
+    fetch("http://127.0.0.1:5000/letrix")
+    .then(res => res.json())
+    .then(jogo => {
+        console.log("dados recebidos:", jogo)
+
+        document.getElementById("imagem").src = "/static/" + jogo.imagem
+        document.getElementById("mensagem").innerText = ""
+        palavraAtual = ""
+
+        criarLetras(jogo.palavra)
+        atualizar(jogo.palavra)
+    })
+    .catch(erro => {
+        console.log("erro no fetch:", erro)
+        document.getElementById("mensagem").innerText = "Erro ao buscar jogo"
+    })
+}
+
+function criarLetras(palavra) {
+    let container = document.getElementById("letras")
+    container.innerHTML = ""
+
+    let letras = palavra.split("")
+    let extras = ["B","D","F","G","L"]
+    let todas = letras.concat(extras)
+
+    todas.sort(() => Math.random() - 0.5)
+
+    todas.forEach(letra => {
+        let btn = document.createElement("button")
+        btn.innerText = letra
+
+        btn.onclick = function() {
+            palavraAtual += letra
+            atualizar(palavra)
+
+            if (palavraAtual === palavra) {
+                document.getElementById("mensagem").innerText = "Parabéns! 🎉"
+            }
+        }
+
+        container.appendChild(btn)
+    })
+}
+
+function atualizar(palavra) {
+    let resultado = ""
+
+    for (let i = 0; i < palavra.length; i++) {
+        resultado += (palavraAtual[i] || "_") + " "
+    }
+
+    document.getElementById("palavra").innerText = resultado
+}
+
+function proxima() {
+    iniciar()
+}
+
+iniciar()
+</script>
+
+</body>
+</html>
