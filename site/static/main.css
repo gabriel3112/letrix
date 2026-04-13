@@ -1,25 +1,96 @@
-img{
-    width:200px;
-    display:block;
-    margin:auto;
-}
-
-.container{
-    display:flex;
-    justify-content:center;
-}
-
-h1{
-    text-align:center;
-}
-
-body{
-    margin:0; /* importante */
-    height:100vh; /* garante altura */
-    
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
     background-image: url("background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-color: #f0f8ff; /* Cor de fallback */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+img {
+    width: 180px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#palavra {
+    font-size: 40px;
+    letter-spacing: 10px;
+    margin: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#letras {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 22px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.1s, background 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#proxima {
+    margin-top: 20px;
+    background: #2196F3;
+    padding: 15px 30px;
+}
+
+#mensagem {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff9800;
+    height: 35px;
+}
+
+/* Animação para clique errado */
+.erro-animacao {
+    background-color: #f44336 !important;
+    animation: tremer 0.3s;
+}
+
+@keyframes tremer {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }

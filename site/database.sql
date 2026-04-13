@@ -9,7 +9,6 @@ CREATE TABLE usuarios (
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE palavras (
     id_palavra INT AUTO_INCREMENT PRIMARY KEY,
     palavra VARCHAR(50) NOT NULL,
@@ -23,6 +22,7 @@ CREATE TABLE niveis (
     pontuacao INT,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
+
 CREATE TABLE respostas (
     id_resposta INT AUTO_INCREMENT PRIMARY KEY,
     id_niveis INT,
